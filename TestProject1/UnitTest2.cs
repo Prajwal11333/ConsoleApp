@@ -1,60 +1,60 @@
-﻿using Xunit;
+﻿using ConsoleApp;
+using Xunit;
 
-public class ArrayUtilsTests
+public class SearchAlgorithmsTests
 {
     [Fact]
-    public void TwoSum_ReturnsCorrectIndices()
+    public void BinarySearch_TargetExists()
     {
-        // Arrange
-        var utils = new ArrayUtils();
-        int[] nums = { 2, 7, 11, 15 };
-        int target = 9;
+        var algo = new SearchAlgorithms();
+        int[] nums = { 1, 3, 5, 7, 9 };
 
-        // Act
-        int[] result = utils.TwoSum(nums, target);
+        int result = algo.BinarySearch(nums, 5);
 
-        // Assert
-        Assert.Equal(new int[] { 0, 1 }, result);
+        Assert.Equal(2, result);
     }
 
     [Fact]
-    public void TwoSum_WorksForDifferentInput()
+    public void BinarySearch_TargetNotFound()
     {
-        // Arrange
-        var utils = new ArrayUtils();
-        int[] nums = { 3, 2, 4 };
-        int target = 6;
+        var algo = new SearchAlgorithms();
+        int[] nums = { 1, 3, 5, 7, 9 };
 
-        // Act
-        int[] result = utils.TwoSum(nums, target);
+        int result = algo.BinarySearch(nums, 6);
 
-        // Assert
-        Assert.Equal(new int[] { 1, 2 }, result);
+        Assert.Equal(-1, result);
     }
 
     [Fact]
-    public void TwoSum_WorksWithNegativeNumbers()
+    public void BinarySearch_FirstElement()
     {
-        // Arrange
-        var utils = new ArrayUtils();
-        int[] nums = { -3, 4, 3, 90 };
-        int target = 0;
+        var algo = new SearchAlgorithms();
+        int[] nums = { 1, 3, 5, 7, 9 };
 
-        // Act
-        int[] result = utils.TwoSum(nums, target);
+        int result = algo.BinarySearch(nums, 1);
 
-        // Assert
-        Assert.Equal(new int[] { 0, 2 }, result);      
+        Assert.Equal(0, result);
     }
 
-    [Theory]
-    [InlineData(new int[] { }, 5, new int[] { })]           // empty array
-    [InlineData(new int[] { 3, 3 }, 6, new int[] { 0, 1 })]     // duplicates
-    [InlineData(new int[] { -2, 1, 3 }, 1, new int[] { 0, 2 })] // negative numbers
-    public void TwoSum_EdgeCases(int[] nums, int target, int[] expected)
+    [Fact]
+    public void BinarySearch_LastElement()
     {
-        var arrayUtils = new ArrayUtils();
-        var result = arrayUtils.TwoSum(nums, target);
-        Assert.Equal(expected, result);
+        var algo = new SearchAlgorithms();
+        int[] nums = { 1, 3, 5, 7, 9 };
+
+        int result = algo.BinarySearch(nums, 9);
+
+        Assert.Equal(4, result);
+    }
+
+    [Fact]
+    public void BinarySearch_EmptyArray()
+    {
+        var algo = new SearchAlgorithms();
+        int[] nums = { };
+
+        int result = algo.BinarySearch(nums, 3);
+
+        Assert.Equal(-1, result);
     }
 }
