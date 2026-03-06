@@ -44,6 +44,17 @@ public class ArrayUtilsTests
         int[] result = utils.TwoSum(nums, target);
 
         // Assert
-        Assert.Equal(new int[] { 0, 2 }, result);
+        Assert.Equal(new int[] { 0, 2 }, result);      
+    }
+
+    [Theory]
+    [InlineData(new int[] { }, 5, new int[] { })]           // empty array
+    [InlineData(new int[] { 3, 3 }, 6, new int[] { 0, 1 })]     // duplicates
+    [InlineData(new int[] { -2, 1, 3 }, 1, new int[] { 0, 2 })] // negative numbers
+    public void TwoSum_EdgeCases(int[] nums, int target, int[] expected)
+    {
+        var arrayUtils = new ArrayUtils();
+        var result = arrayUtils.TwoSum(nums, target);
+        Assert.Equal(expected, result);
     }
 }
